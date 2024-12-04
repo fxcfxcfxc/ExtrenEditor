@@ -27,7 +27,7 @@ void UQuickAssetAction::DuplicateAssets(int32 NumOfDuplicates)
 	{
 		for(int32 i =0; i< NumOfDuplicates; i++)
 		{
-			//原始目标的路径名
+			//原始目标的路径名测试
 			const FString SourceAssetPath = AssetData.ObjectPath.ToString();
 			//复制资产名
 			const FString NewDuplicatedAssetName = AssetData.AssetName.ToString() + TEXT("_")  + FString::FromInt(i+1);
