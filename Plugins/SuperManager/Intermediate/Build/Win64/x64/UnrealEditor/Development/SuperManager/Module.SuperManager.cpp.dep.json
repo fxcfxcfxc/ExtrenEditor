@@ -1,0 +1,33 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\work\\extreneditor\\plugins\\supermanager\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\supermanager\\module.supermanager.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\unrealengine-5.4.4-release\\engine\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "d:\\work\\extreneditor\\plugins\\supermanager\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\supermanager\\definitions.supermanager.h",
+            "d:\\work\\extreneditor\\plugins\\supermanager\\intermediate\\build\\win64\\unrealeditor\\inc\\supermanager\\uht\\quickassetaction.gen.cpp",
+            "d:\\work\\extreneditor\\plugins\\supermanager\\source\\supermanager\\public\\quickassetaction.h",
+            "d:\\unrealengine-5.4.4-release\\engine\\source\\editor\\blutility\\classes\\assetactionutility.h",
+            "d:\\unrealengine-5.4.4-release\\engine\\source\\editor\\blutility\\classes\\editorutilityobject.h",
+            "d:\\unrealengine-5.4.4-release\\engine\\source\\runtime\\engine\\public\\iassetregistrytagproviderinterface.h",
+            "d:\\unrealengine-5.4.4-release\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\iassetregistrytagproviderinterface.generated.h",
+            "d:\\unrealengine-5.4.4-release\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\blutility\\uht\\editorutilityobject.generated.h",
+            "d:\\unrealengine-5.4.4-release\\engine\\source\\editor\\blutility\\public\\ieditorutilityextension.h",
+            "d:\\unrealengine-5.4.4-release\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\blutility\\uht\\ieditorutilityextension.generated.h",
+            "d:\\unrealengine-5.4.4-release\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\blutility\\uht\\assetactionutility.generated.h",
+            "d:\\work\\extreneditor\\plugins\\supermanager\\intermediate\\build\\win64\\unrealeditor\\inc\\supermanager\\uht\\quickassetaction.generated.h",
+            "d:\\work\\extreneditor\\plugins\\supermanager\\intermediate\\build\\win64\\unrealeditor\\inc\\supermanager\\uht\\supermanager.init.gen.cpp",
+            "d:\\work\\extreneditor\\plugins\\supermanager\\source\\supermanager\\private\\quickassetaction.cpp",
+            "d:\\work\\extreneditor\\plugins\\supermanager\\source\\supermanager\\public\\debugheader.h",
+            "d:\\unrealengine-5.4.4-release\\engine\\source\\editor\\blutility\\public\\editorutilitylibrary.h",
+            "d:\\unrealengine-5.4.4-release\\engine\\source\\runtime\\engine\\classes\\kismet\\blueprintasyncactionbase.h",
+            "d:\\unrealengine-5.4.4-release\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\blueprintasyncactionbase.generated.h",
+            "d:\\unrealengine-5.4.4-release\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\blutility\\uht\\editorutilitylibrary.generated.h",
+            "d:\\work\\extreneditor\\plugins\\supermanager\\source\\supermanager\\private\\supermanager.cpp",
+            "d:\\work\\extreneditor\\plugins\\supermanager\\source\\supermanager\\public\\supermanager.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

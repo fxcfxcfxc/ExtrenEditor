@@ -1,0 +1,16 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-SuperManager-Win64-DebugGame.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"..\Intermediate\Build\Win64\x64\UnrealEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.NonOptimized.ValApi.Cpp20.h.obj"
+"D:\Work\ExtrenEditor\Plugins\SuperManager\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\SuperManager\QuickAssetAction.cpp.obj"
+"D:\Work\ExtrenEditor\Plugins\SuperManager\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\SuperManager\SuperManager.cpp.obj"
+"D:\Work\ExtrenEditor\Plugins\SuperManager\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\SuperManager\AdvanceDeletionWidget.cpp.obj"
+"D:\Work\ExtrenEditor\Plugins\SuperManager\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\SuperManager\QuickAssetAction.gen.cpp.obj"
+"D:\Work\ExtrenEditor\Plugins\SuperManager\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\SuperManager\SuperManager.init.gen.cpp.obj"
+"..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Default.rc2.res"
+/OUT:"D:\Work\ExtrenEditor\Plugins\SuperManager\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\SuperManager\UnrealEditor-SuperManager-Win64-DebugGame.lib"
