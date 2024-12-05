@@ -15,6 +15,9 @@ public:
 		{
 		}
 
+
+	SLATE_ARGUMENT(TArray< TSharedPtr<FAssetData>>,AssetsDataArray)
+
 	SLATE_END_ARGS()
 
 	/** Constructs this widget with InArgs */

@@ -3,7 +3,9 @@
 #include "SuperManager.h"
 
 #include "ContentBrowserModule.h"
-
+#include "SlateWidget/AdvanceDeletionWidget.h"
+#include "Subsystems/EditorActorSubsystem.h"
+#include "EditorAssetLibrary.h"
 #define LOCTEXT_NAMESPACE "FSuperManagerModule"
 
 void FSuperManagerModule::StartupModule()
@@ -28,7 +30,7 @@ void FSuperManagerModule::InitCBMenuExtention()
 	//入口
 	TArray<FContentBrowserMenuExtender_SelectedPaths>& ContentBrowserModuleMenuExtenders = ContentBrowserModule.GetAllPathViewContextMenuExtenders();
 
-	//创建委托并绑定，右击文件夹目录时触发
+	//右击文件夹时
 	FContentBrowserMenuExtender_SelectedPaths CustomCBMenuDelegate;
 	CustomCBMenuDelegate.BindRaw(this,&FSuperManagerModule::CustomCBMenuExtender);
 	ContentBrowserModuleMenuExtenders.Add(CustomCBMenuDelegate);
@@ -50,7 +52,8 @@ TSharedRef<FExtender> FSuperManagerModule::CustomCBMenuExtender(const TArray<FSt
 			EExtensionHook::After,
 			TSharedPtr<FUICommandList>(),
 			FMenuExtensionDelegate::CreateRaw(this, &FSuperManagerModule::AddCBMenuEntry));
-
+		//将当前目录保存下来
+		FolderPathsSelected = SelectedPaths;
 		
 	}
 	return  MenuExtender;
@@ -96,7 +99,41 @@ void FSuperManagerModule::RegisterAdvanceDeletionTab()
 TSharedRef<SDockTab> FSuperManagerModule::OnSpawnAdvanceDeletionTab(const FSpawnTabArgs& SpawnArgs)
 {
 	return
-	SNew(SDockTab).TabRole(NomadTab);
+		SNew(SDockTab).TabRole(NomadTab)
+		[
+
+			SNew(SAdvanceDeletionWidget)
+				.AssetsDataArray( GetAllAssetDataUnderSelectedFolder() )
+		];
+}
+
+TArray<TSharedPtr<FAssetData>> FSuperManagerModule::GetAllAssetDataUnderSelectedFolder()
+{
+
+	TArray<TSharedPtr<FAssetData>> AvaiableAssetsData;
+
+	TArray<FString> AssetsPathNames = UEditorAssetLibrary::ListAssets(FolderPathsSelected[0]);
+
+	for (const FString& AssetPathName : AssetsPathNames)
+	{
+		if(AssetPathName.Contains(TEXT("Developers"))|| //Don't touch root folder
+				AssetPathName.Contains(TEXT("Collections")) ||
+				AssetPathName.Contains(TEXT("__ExternalActors__")) ||
+				AssetPathName.Contains(TEXT("__ExternalObjects__")))
+			{
+				continue;
+			}
+
+		if (!UEditorAssetLibrary::DoesAssetExist(AssetPathName))
+			continue;
+		
+		const FAssetData Data = UEditorAssetLibrary::FindAssetData(AssetPathName);
+
+		AvaiableAssetsData.Add(MakeShared<FAssetData>(Data) );
+
+	}
+
+	return AvaiableAssetsData;
 }
 
 #undef LOCTEXT_NAMESPACE
