@@ -14,6 +14,9 @@ public:
 	virtual void ShutdownModule() override;
 
 private:
+
+	TArray<FString> FolderPathsSelected;
+
 	void InitCBMenuExtention();
 
 	TSharedRef<FExtender> CustomCBMenuExtender(const TArray<FString>& SelectedPaths);
@@ -26,4 +29,7 @@ private:
 	void RegisterAdvanceDeletionTab();
 
 	TSharedRef<SDockTab> OnSpawnAdvanceDeletionTab( const FSpawnTabArgs& SpawnArgs);
+
+	//获取选择文件夹下的资产
+	TArray< TSharedPtr<FAssetData> > GetAllAssetDataUnderSelectedFolder();
 };
