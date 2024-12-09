@@ -16,11 +16,14 @@ void SAdvanceDeletionWidget::Construct(const FArguments& InArgs)
 	];
 	*/
 	//
+
+	StoredAssetData = InArgs._AssetsDataArray;
 	bCanSupportFocus = true;
 
 	//
 	FSlateFontInfo TitleTextFont = FCoreStyle::Get().GetFontStyle(FName("EmbossedText"));
 	TitleTextFont.Size = 30;
+
 
 
 	//layout
@@ -29,7 +32,7 @@ void SAdvanceDeletionWidget::Construct(const FArguments& InArgs)
 			/*SNew(STextBlock)
 			.Text(FText::FromString(InArgs._TestString) )*/
 
-		//main 
+		//main  layout
 		SNew(SVerticalBox)
 		
 		//标题
@@ -43,8 +46,48 @@ void SAdvanceDeletionWidget::Construct(const FArguments& InArgs)
 			.ColorAndOpacity(FColor::White)
 		]
 
+		+SVerticalBox::Slot()
+		.AutoHeight()
+		[
+			SNew(SHorizontalBox)
+		]
+
+		+SVerticalBox::Slot()
+		.VAlign(VAlign_Fill)
+		[
+			SNew(SScrollBox)
+			
+			+SScrollBox::Slot()
+			[
+				SNew(SListView<TSharedPtr <FAssetData>>)
+				.ItemHeight(35.f)
+				.ListItemsSource(&StoredAssetData)
+				.OnGenerateRow(this, &SAdvanceDeletionWidget::OnGenerateRowForList)
+			]
+		]
+
+
 	];
 
+}
+
+TSharedRef<ITableRow> SAdvanceDeletionWidget::OnGenerateRowForList(TSharedPtr<FAssetData> AssetDataToDisplay, const TSharedRef<STableViewBase>& OwnerTable)
+{
+	//
+	const FString  DisplayAssetName = AssetDataToDisplay->AssetName.ToString();
+
+	//
+	TSharedRef< STableRow <  TSharedPtr<FAssetData> > > ListviewRowWiget =
+		SNew(STableRow < TSharedPtr<FAssetData> >, OwnerTable)
+		[
+			SNew(STextBlock)
+			.Text(FText::FromString( DisplayAssetName))
+		];
+
+	//
+	return ListviewRowWiget;
+	/*return
+	SNew( STableRow< TSharedPtr<FAssetData> >, OwnerTable)*/
 }
 
 END_SLATE_FUNCTION_BUILD_OPTIMIZATION

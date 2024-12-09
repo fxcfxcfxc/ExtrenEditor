@@ -30,7 +30,7 @@ void FSuperManagerModule::InitCBMenuExtention()
 	//入口
 	TArray<FContentBrowserMenuExtender_SelectedPaths>& ContentBrowserModuleMenuExtenders = ContentBrowserModule.GetAllPathViewContextMenuExtenders();
 
-	//右击文件夹时
+	//右击文件夹时进行广播
 	FContentBrowserMenuExtender_SelectedPaths CustomCBMenuDelegate;
 	CustomCBMenuDelegate.BindRaw(this,&FSuperManagerModule::CustomCBMenuExtender);
 	ContentBrowserModuleMenuExtenders.Add(CustomCBMenuDelegate);
