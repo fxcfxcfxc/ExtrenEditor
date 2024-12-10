@@ -28,4 +28,8 @@ private:
 	TArray< TSharedPtr<FAssetData> > StoredAssetData;
 
 	TSharedRef<ITableRow> OnGenerateRowForList(TSharedPtr<FAssetData> AssetDataToDisplay, const TSharedRef<STableViewBase>& OwnerTable);
+
+	void OnCheckBoxStateChanged(ECheckBoxState NewState, TSharedPtr<FAssetData> AssetDataToDisplay );
+
+	FReply OnDeleteButtonClicked(TSharedPtr<FAssetData> ClickedAssetData);
 };
