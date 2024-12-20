@@ -4,8 +4,10 @@
 #include "SlateWidget/AdvanceDeletionWidget.h"
 
 #include "SlateOptMacros.h"
+
 #include <DebugHeader.h>
 
+#include "SuperManager.h"
 BEGIN_SLATE_FUNCTION_BUILD_OPTIMIZATION
 
 void SAdvanceDeletionWidget::Construct(const FArguments& InArgs)
@@ -83,9 +85,9 @@ TSharedRef<ITableRow> SAdvanceDeletionWidget::OnGenerateRowForList(TSharedPtr<FA
 	AssetClassNameFont.Size = 10;
 	FSlateFontInfo AssetNameFont = FCoreStyle::Get().GetFontStyle(FName("EmbossedText"));
 	AssetNameFont.Size = 15;
-	//设置每行de 
+	//设置每行
 	TSharedRef< STableRow <  TSharedPtr<FAssetData> > > ListviewRowWiget =
-		SNew(STableRow < TSharedPtr<FAssetData> >, OwnerTable)
+		SNew( STableRow < TSharedPtr<FAssetData> >, OwnerTable).Padding(FMargin(6.f) )
 		[
 
 			SNew(SHorizontalBox)
@@ -117,6 +119,8 @@ TSharedRef<ITableRow> SAdvanceDeletionWidget::OnGenerateRowForList(TSharedPtr<FA
 
 				//资产名称
 				+ SHorizontalBox::Slot()
+				.HAlign(HAlign_Left)
+				.VAlign(VAlign_Fill)
 				[
 					SNew(STextBlock)
 						.Text(FText::FromString(DisplayAssetName))
@@ -124,13 +128,15 @@ TSharedRef<ITableRow> SAdvanceDeletionWidget::OnGenerateRowForList(TSharedPtr<FA
 				]
 
 				+ SHorizontalBox::Slot()
+				.HAlign(HAlign_Left)
+				.VAlign(VAlign_Fill)
 				[
 					SNew(SButton)
 						.Text(FText::FromString(TEXT("删除") ) )
 						.OnClicked(this, &SAdvanceDeletionWidget::OnDeleteButtonClicked, AssetDataToDisplay)
 
 				]
-
+				
 
 
 		];
@@ -162,6 +168,9 @@ void SAdvanceDeletionWidget::OnCheckBoxStateChanged(ECheckBoxState NewState, TSh
 
 FReply SAdvanceDeletionWidget::OnDeleteButtonClicked(TSharedPtr<FAssetData> ClickedAssetData)
 {
+
+	DebugHeader::Print(ClickedAssetData->AssetName.ToString() + TEXT("is clicked"), FColor::Green);
+
 	return FReply::Handled();
 }
 
