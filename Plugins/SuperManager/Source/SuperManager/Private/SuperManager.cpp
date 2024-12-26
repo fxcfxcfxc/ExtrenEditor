@@ -6,7 +6,8 @@
 #include "SlateWidget/AdvanceDeletionWidget.h"
 #include "Subsystems/EditorActorSubsystem.h"
 #include "EditorAssetLibrary.h"
-#include <ObjectTools.h>
+#include "ObjectTools.h"
+#include "AssetToolsModule.h"
 #define LOCTEXT_NAMESPACE "FSuperManagerModule"
 
 void FSuperManagerModule::StartupModule()
@@ -137,12 +138,17 @@ TArray<TSharedPtr<FAssetData>> FSuperManagerModule::GetAllAssetDataUnderSelected
 	return AvaiableAssetsData;
 }
 
-void FSuperManagerModule::DeleteSingleAssetForAssetList(const FAssetData& AssetDataToDelete)
+bool FSuperManagerModule::DeleteSingleAssetForAssetList(const FAssetData& AssetDataToDelete)
 {
 	TArray<FAssetData> AssetDataForDeletion;
 	AssetDataForDeletion.Add(AssetDataToDelete);
 
-	ObjectTools::DeleteAssets(AssetDataForDeletion);
+	if (ObjectTools::DeleteAssets(AssetDataForDeletion) > 0)
+	{
+		return true;
+	}
+
+	return false;
 
 }
 

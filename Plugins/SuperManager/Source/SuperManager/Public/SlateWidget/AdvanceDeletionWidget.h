@@ -25,6 +25,10 @@ public:
 
 
 private:
+	TSharedRef< SListView< TSharedRef< FAssetData> > > ConstructAssetListView();
+
+	TSharedRef< SListView< TSharedRef< FAssetData> > > ConstructedAssetListView;
+
 	TArray< TSharedPtr<FAssetData> > StoredAssetData;
 
 	TSharedRef<ITableRow> OnGenerateRowForList(TSharedPtr<FAssetData> AssetDataToDisplay, const TSharedRef<STableViewBase>& OwnerTable);

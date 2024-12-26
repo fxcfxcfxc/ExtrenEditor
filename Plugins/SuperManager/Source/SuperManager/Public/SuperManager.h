@@ -33,6 +33,7 @@ private:
 	//获取选择文件夹下的资产
 	TArray< TSharedPtr<FAssetData> > GetAllAssetDataUnderSelectedFolder();
 
+public:
 	//删除选中的资产
-	void DeleteSingleAssetForAssetList(const FAssetData& AssetDataToDelete);
+	bool DeleteSingleAssetForAssetList(const FAssetData& AssetDataToDelete);
 };

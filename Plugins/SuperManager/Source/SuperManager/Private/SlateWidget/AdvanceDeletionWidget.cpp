@@ -75,6 +75,13 @@ void SAdvanceDeletionWidget::Construct(const FArguments& InArgs)
 
 }
 
+TSharedRef<SListView<TSharedRef<FAssetData>>> SAdvanceDeletionWidget::ConstructAssetListView()
+{
+
+
+	return TSharedRef<SListView<TSharedRef<FAssetData>>>();
+}
+
 TSharedRef<ITableRow> SAdvanceDeletionWidget::OnGenerateRowForList(TSharedPtr<FAssetData> AssetDataToDisplay, const TSharedRef<STableViewBase>& OwnerTable)
 {
 	
@@ -168,6 +175,10 @@ void SAdvanceDeletionWidget::OnCheckBoxStateChanged(ECheckBoxState NewState, TSh
 
 FReply SAdvanceDeletionWidget::OnDeleteButtonClicked(TSharedPtr<FAssetData> ClickedAssetData)
 {
+
+	FSuperManagerModule& SuperManagerModule = FModuleManager::LoadModuleChecked<FSuperManagerModule>(TEXT("SuperManager"));
+	
+	const bool bAssetDeleted = SuperManagerModule.DeleteSingleAssetForAssetList(*ClickedAssetData.Get());
 
 	DebugHeader::Print(ClickedAssetData->AssetName.ToString() + TEXT("is clicked"), FColor::Green);
 
