@@ -25,9 +25,9 @@ public:
 
 
 private:
-	TSharedRef< SListView< TSharedRef< FAssetData> > > ConstructAssetListView();
+	TSharedRef< SListView< TSharedPtr< FAssetData> > > ConstructAssetListView();
 
-	TSharedRef< SListView< TSharedRef< FAssetData> > > ConstructedAssetListView;
+	TSharedPtr< SListView< TSharedPtr< FAssetData> > > ConstructedAssetListView;
 
 	TArray< TSharedPtr<FAssetData> > StoredAssetData;
 
@@ -36,4 +36,18 @@ private:
 	void OnCheckBoxStateChanged(ECheckBoxState NewState, TSharedPtr<FAssetData> AssetDataToDisplay );
 
 	FReply OnDeleteButtonClicked(TSharedPtr<FAssetData> ClickedAssetData);
+
+	/*更新List视图*/
+	void RefreshAssetListView();
+
+
+	/*底部按钮*/
+	TSharedRef<SButton> ConstructSelectAllButton();
+	
+	FReply OnDeleteAllButtonClicked();
+
+	TSharedRef<STextBlock> ConstructTextForTabButtons(const FString& TextContent);
+
+
+	
 };

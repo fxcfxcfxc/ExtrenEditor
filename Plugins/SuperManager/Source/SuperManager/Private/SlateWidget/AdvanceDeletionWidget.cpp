@@ -63,10 +63,7 @@ void SAdvanceDeletionWidget::Construct(const FArguments& InArgs)
 			
 			+SScrollBox::Slot()
 			[
-				SNew(SListView<TSharedPtr <FAssetData>>)
-				.ItemHeight(35.f)
-				.ListItemsSource(&StoredAssetData)
-				.OnGenerateRow(this, &SAdvanceDeletionWidget::OnGenerateRowForList)
+				ConstructAssetListView()
 			]
 		]
 
@@ -75,11 +72,14 @@ void SAdvanceDeletionWidget::Construct(const FArguments& InArgs)
 
 }
 
-TSharedRef<SListView<TSharedRef<FAssetData>>> SAdvanceDeletionWidget::ConstructAssetListView()
+TSharedRef<SListView<TSharedPtr<FAssetData>>> SAdvanceDeletionWidget::ConstructAssetListView()
 {
+		ConstructedAssetListView = SNew(SListView<TSharedPtr <FAssetData>>)
+		.ItemHeight(35.f)
+		.ListItemsSource(&StoredAssetData)
+		.OnGenerateRow(this, &SAdvanceDeletionWidget::OnGenerateRowForList);
 
-
-	return TSharedRef<SListView<TSharedRef<FAssetData>>>();
+		return ConstructedAssetListView.ToSharedRef();
 }
 
 TSharedRef<ITableRow> SAdvanceDeletionWidget::OnGenerateRowForList(TSharedPtr<FAssetData> AssetDataToDisplay, const TSharedRef<STableViewBase>& OwnerTable)
@@ -180,9 +180,49 @@ FReply SAdvanceDeletionWidget::OnDeleteButtonClicked(TSharedPtr<FAssetData> Clic
 	
 	const bool bAssetDeleted = SuperManagerModule.DeleteSingleAssetForAssetList(*ClickedAssetData.Get());
 
+	//更新视图
+	if (bAssetDeleted)
+	{
+		if (StoredAssetData.Contains(ClickedAssetData) ){
+			StoredAssetData.Remove(ClickedAssetData);
+		}
+	}
+
 	DebugHeader::Print(ClickedAssetData->AssetName.ToString() + TEXT("is clicked"), FColor::Green);
 
 	return FReply::Handled();
+}
+
+void SAdvanceDeletionWidget::RefreshAssetListView()
+{
+	if (ConstructedAssetListView.IsValid()) {
+		ConstructedAssetListView->RebuildList();
+	}
+}
+
+TSharedRef<SButton> SAdvanceDeletionWidget::ConstructSelectAllButton()
+{
+	TSharedRef<SButton> SelectAllButton = SNew(SButton)
+		.ContentPadding(FMargin(5.f))
+		.OnClicked(this, &SAdvanceDeletionWidget::OnDeleteAllButtonClicked);
+
+
+	//初始化button 参数
+	SelectAllButton->SetContent();
+	return SelectAllButton;
+}
+
+FReply SAdvanceDeletionWidget::OnDeleteAllButtonClicked()
+{
+
+	return FReply::Handled();
+}
+
+TSharedRef<STextBlock> SAdvanceDeletionWidget::ConstructTextForTabButtons(const FString& TextContent)
+{
+
+	FSlateFontInfo ButtonTextFont = GetEmboseedTextFont()
+	return TSharedRef<STextBlock>();
 }
 
 END_SLATE_FUNCTION_BUILD_OPTIMIZATION
