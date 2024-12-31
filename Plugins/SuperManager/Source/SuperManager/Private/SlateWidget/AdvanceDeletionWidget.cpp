@@ -221,8 +221,14 @@ FReply SAdvanceDeletionWidget::OnDeleteAllButtonClicked()
 TSharedRef<STextBlock> SAdvanceDeletionWidget::ConstructTextForTabButtons(const FString& TextContent)
 {
 
-	FSlateFontInfo ButtonTextFont = GetEmboseedTextFont()
+	FSlateFontInfo ButtonTextFont = FCoreStyle::Get().GetFontStyle(FName("EmbossedText"));
 	return TSharedRef<STextBlock>();
+}
+
+FSlateFontInfo SAdvanceDeletionWidget::etEmboseedTextFont()
+{
+
+	return FSlateFontInfo();
 }
 
 END_SLATE_FUNCTION_BUILD_OPTIMIZATION

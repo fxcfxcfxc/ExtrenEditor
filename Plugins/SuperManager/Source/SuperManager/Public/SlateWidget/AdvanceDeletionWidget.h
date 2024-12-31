@@ -48,6 +48,7 @@ private:
 
 	TSharedRef<STextBlock> ConstructTextForTabButtons(const FString& TextContent);
 
-
+	/*字体*/
+	FSlateFontInfo etEmboseedTextFont();
 	
 };
